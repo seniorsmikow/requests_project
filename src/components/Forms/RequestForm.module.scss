@@ -1,0 +1,75 @@
+.mainWrapper {
+    width: 100%;
+    height: 100vh;
+    padding-top: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #E4E4E1;
+    background-image: radial-gradient(at top center, rgba(255,255,255,0.03) 0%, rgba(0,0,0,0.03) 100%), linear-gradient(to top, rgba(255,255,255,0.1) 0%, rgba(143,152,157,0.60) 100%);
+ 	background-blend-mode: normal, multiply;
+}
+
+.requestTitle {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.mainRequests {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+}
+
+.formWrapper {
+    padding-top: 20px;
+    width: 400px;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.buttonGroup {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    width: 250px;
+    height: 80px;
+    margin: 0 auto;
+    margin-top: 30px;
+}
+
+.formRequestError {
+    color: #790707;
+    text-transform: lowercase;
+    font-weight: 500;
+}
+
+.formGroup {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #2d2c2c;
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: 700;
+    width: 280px;
+    margin-top: 30px;
+    input {
+        border-radius: 5px;
+        width: 100%;
+        height: 30px;
+        text-align: center;
+        margin: 20px 0 5px 0;
+        -webkit-box-shadow: 4px 6px 18px 0px rgba(34, 60, 80, 0.67);
+        -moz-box-shadow: 4px 6px 18px 0px rgba(34, 60, 80, 0.67);
+        box-shadow: 4px 6px 18px 0px rgba(34, 60, 80, 0.67);
+    }
+    :hover {
+        transform: scale(1.04);
+    }
+}

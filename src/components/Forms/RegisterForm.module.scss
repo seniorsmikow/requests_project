@@ -1,0 +1,64 @@
+.main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 70px;
+    color: white;
+    height: 100vh;
+    background-image: linear-gradient(to right, #f78ca0 0%, #f9748f 19%, #fd868c 60%, #fe9a8b 100%);
+    text-align: center;
+    font-size: 25px;
+    padding-top: 100px;
+}
+
+.buttonGroup {
+    margin: 0 auto;
+    margin-top: 20px;
+    display: flex;
+    width: 200px;
+    justify-content: space-between;
+}
+
+.formGroup {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #2d2c2c;
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: 700;
+    width: 280px;
+    margin-top: 30px;
+    input {
+        border-radius: 5px;
+        width: 100%;
+        height: 30px;
+        text-align: center;
+        margin: 20px 0 5px 0;
+        -webkit-box-shadow: 4px 6px 18px 0px rgba(34, 60, 80, 0.67);
+        -moz-box-shadow: 4px 6px 18px 0px rgba(34, 60, 80, 0.67);
+        box-shadow: 4px 6px 18px 0px rgba(34, 60, 80, 0.67);
+    }
+    :hover {
+        transform: scale(1.04);
+    }
+}
+
+.registerTip {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    border-top: 1px solid white;
+    width: 100%;
+    padding-top: 10px;
+    font-size: 18px;
+    :hover {
+        transform: scale(1.1);
+    }
+}
+
+.formRequestError {
+    color: #790707;
+    text-transform: lowercase;
+    font-weight: 500;
+}

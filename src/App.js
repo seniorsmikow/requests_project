@@ -1,26 +1,42 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { connect } from 'react-redux';
+import './App.scss';
+import Header from './components/Header/Header';
+import {BrowserRouter, Route, Switch} from 'react-router-dom';
+import Main from './components/Main/Main';
+import Request from './components/Request/Request';
+import SendRequestPage from './components/SendRequestPage/SendRequestPage';
+import LoginPage from './components/Login/LoginPage';
+import RegisterPage from './components/Register/RegisterPage';
 
-function App() {
+
+function App(props) {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+        <Header />
+        <div className="container">
+          <div className="row justify-content-center">
+            <div className="col justify-content-center">
+              <Switch>
+                <Route exact path="/" component={Main}/>
+                <Route path="/loginpage" component={LoginPage}/>
+                <Route path="/registerpage" component={RegisterPage}/>
+                {
+                  props.isAdmin ? <Route path="/request" component={Request}/> : null
+                }
+                {
+                  props.isUser ? <Route path="/sendrequestpage" component={SendRequestPage}/> : null
+                }
+              </Switch>
+            </div>
+          </div>
+        </div>
+    </BrowserRouter>
   );
 }
 
-export default App;
+const mapStateToProps = state => ({isAdmin: state.login.isAdmin,isUser: state.login.isUser})
+  
+
+export default connect(mapStateToProps, null)(App);
