@@ -5,7 +5,6 @@ import {logoutAction} from '../../Redux/auth-store';
 import {useHistory} from 'react-router-dom';
 import classes from './Header.module.scss';
 import Button from '@material-ui/core/Button';
-import ButtonGroup from '@material-ui/core/ButtonGroup';
 import MenuToggle from '../MobileMenu/MenuToggle/MenuToggle';
 import Drawer from '../MobileMenu/MenuToggle/Drawer/Drawer';
 import { useState } from 'react';
@@ -53,7 +52,6 @@ const Header = props => {
                     <Button onClick={logout} variant="contained" color="secondary">Выйти</Button>
                 </div>
             </nav>
-            {/* {props.isLogin ? <div className={classes.welcomeText}>Добро пожаловать</div> : null} */}
         </React.Fragment>
         
 

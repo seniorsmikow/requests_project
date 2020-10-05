@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import classes from './LoginForm.module.scss';
 import Button from '@material-ui/core/Button';
+
  
 const SignupSchema = Yup.object().shape({
   password: Yup.string()
@@ -16,8 +17,22 @@ const SignupSchema = Yup.object().shape({
     .required('Заполните поле'),
 });
  
-const LoginForm = props => (
-  <form>
+const LoginForm = props => {
+
+  const resetIsLogin = () => {
+    props.resetIsLogin();
+  };
+
+
+  useEffect(() => {
+    if(props.isLogin) {
+      alert("Enter!");
+    }
+    return resetIsLogin();
+  }, [props.isLogin]);
+
+
+  return ( <form>
     <div className={classes.main}> 
       <div>
         <h2>Login</h2>
@@ -50,7 +65,7 @@ const LoginForm = props => (
                       {errors.password && touched.password ? <div className={classes.formRequestError}>{errors.password}</div> : null}
                     </div>
                     <div className={classes.buttonGroup}>
-                      <Button type="submit" variant="contained" color="primary" onClick={() => alert("Enter!")}>Вход</Button>
+                      <Button type="submit" variant="contained" color="primary">Вход</Button>
                       <Button type="reset" variant="contained" color="secondary">Сброс</Button>
                       
                     </div>
@@ -67,7 +82,7 @@ const LoginForm = props => (
         </Formik>
       </div>
     </div>
-  </form>
-);
+  </form> )
+}
 
 export default LoginForm;

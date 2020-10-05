@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { getRequestsData, getNewRequests, resetRequests } from '../../Redux/situation-store';
+import { getRequestsData, getNewRequests, resetRequests } from '../../Redux/requests-store';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Table from '@material-ui/core/Table';
@@ -11,7 +11,6 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import styles from './Request.module.scss';
-import Loader from '../Loader/Loader';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -99,8 +98,8 @@ const Request = ({machines, getRequestsData, getNewRequests}) => {
 
 const mapStateToProps = state => {
     return {
-        machines: state.situation.machines,
-        keys: state.situation.keys,
+        machines: state.requests.machines,
+        keys: state.requests.keys,
     }
 };
 

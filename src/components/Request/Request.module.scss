@@ -6,6 +6,8 @@
 
 }
 
-.mainRequests {
-
+@media (max-width: 320px) {
+    .mainRequests {
+        width: 90%;
+    }
 }

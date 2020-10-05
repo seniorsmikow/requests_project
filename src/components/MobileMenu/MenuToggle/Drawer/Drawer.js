@@ -7,10 +7,8 @@ import Backdrop from '../../Backdrop/Backdrop';
 const list = [
     {to: '/', label: 'Главная', exact: true},
     {to: '/loginpage', label: 'Авторизация', exact: true},
-    {to: '/registerpage', label: 'Регистрация', exact: true},
     {to: '/request', label: 'Заявки', exact: true},
     {to: '/sendrequestpage', label: 'Отправить заявку', exact: true},
-    {to: '/adminmain', label: 'hz', exact: true}
 ];
 
 const Drawer = props => {

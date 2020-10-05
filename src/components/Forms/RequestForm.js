@@ -85,9 +85,12 @@ return ( <div className={classes.mainWrapper}>
             
             
             <div className={classes.buttonGroup}>
-            <Button type="submit" variant="contained" color="primary">Отправить заявку</Button>
-            <Button type="reset" variant="contained" color="secondary">Сбросить данные</Button>
-            
+                <div className={classes.request__button}>
+                    <Button type="submit" variant="contained" color="primary">Отправить заявку</Button>
+                </div>
+                <div className={classes.request__button}>
+                    <Button type="reset" variant="contained" color="secondary">Сбросить данные</Button>
+                </div>
             </div>
             
         </Form>

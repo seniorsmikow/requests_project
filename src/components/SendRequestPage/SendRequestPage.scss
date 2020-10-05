@@ -5,3 +5,9 @@
     width: 100%;
     height: 100vh;
 }
+
+@media (max-width: 350px) {
+    .sendRequestPage {
+        width: 90%;
+    }
+}

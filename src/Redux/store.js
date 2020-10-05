@@ -1,11 +1,11 @@
 import {createStore, combineReducers, applyMiddleware, compose} from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import loginStore from './auth-store';
-import situationStore from './situation-store';
+import requestsStore from './requests-store';
 
 let reducersBuild = combineReducers({
     login: loginStore,
-    situation: situationStore,
+    requests: requestsStore,
 });
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

@@ -1,7 +1,7 @@
 import React from 'react';
 import classes from './SendRequestPage.scss';
 import {connect} from 'react-redux';
-import {sendUserRequest} from '../../Redux/situation-store';
+import {sendUserRequest} from '../../Redux/requests-store';
 import RequestForm from '../Forms/RequestForm';
 
 const SendRequestPage = props => {
@@ -29,8 +29,8 @@ const mapStateToProps = state => {
         isAdmin: state.login.isAdmin,
         isUser: state.login.isUser,
         isLogin: state.login.isLogin,
-        machines: state.situation.machines,
-        error: state.situation.error
+        machines: state.requests.machines,
+        error: state.requests.error
     }
 };
 

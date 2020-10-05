@@ -8,31 +8,30 @@ import Request from './components/Request/Request';
 import SendRequestPage from './components/SendRequestPage/SendRequestPage';
 import LoginPage from './components/Login/LoginPage';
 import RegisterPage from './components/Register/RegisterPage';
+import NewAlert from './components/NewAlert/NewAlert';
+import { AlertState } from './Context/alert/alertState';
 
 
 function App(props) {
 
   return (
-    <BrowserRouter>
-        <Header />
-        <div className="container">
-          <div className="row justify-content-center">
-            <div className="col justify-content-center">
-              <Switch>
-                <Route exact path="/" component={Main}/>
-                <Route path="/loginpage" component={LoginPage}/>
-                <Route path="/registerpage" component={RegisterPage}/>
-                {
-                  props.isAdmin ? <Route path="/request" component={Request}/> : null
-                }
-                {
-                  props.isUser ? <Route path="/sendrequestpage" component={SendRequestPage}/> : null
-                }
-              </Switch>
-            </div>
-          </div>
-        </div>
-    </BrowserRouter>
+    <AlertState>
+      <BrowserRouter>
+          <Header />
+            <NewAlert />
+            <Switch>
+              <Route exact path="/" component={Main}/>
+              <Route path="/loginpage" component={LoginPage}/>
+              <Route path="/registerpage" component={RegisterPage}/>
+              {
+                props.isAdmin ? <Route path="/request" component={Request}/> : null
+              }
+              {
+                props.isUser ? <Route path="/sendrequestpage" component={SendRequestPage}/> : null
+              }
+            </Switch>
+      </BrowserRouter>
+    </AlertState>
   );
 }
 

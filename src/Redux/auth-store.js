@@ -5,6 +5,8 @@ const SET_USER = "auth/SET_USER";
 const LOG_OUT = "auth/LOG_OUT";
 const CATCH_ERROR = "auth/CATCH_ERROR";
 const SHOW_REGISTER_ALERT = "auth/SHOW_REGISTER_ALERT";
+const SHOW_LOGIN_ALERT = "auth/SHOW_LOGIN_ALERT";
+const RESET_LOGIN_ALERT = "auth/RESET_LOGIN_ALERT";
 
 const initialState = {
     isAdmin: false,
@@ -19,11 +21,11 @@ const loginStore = (state = initialState, action) => {
     switch (action.type) {
         case SET_ADMIN:
             return {
-                ...state, isAdmin: true, isUser: false, isLogin: true
+                ...state, isAdmin: true, isUser: false
             };
         case SET_USER: 
             return {
-                ...state, isUser: true, isAdmin: false, isLogin: true, isRegistered: action.registr
+                ...state, isUser: true, isAdmin: false, isRegistered: action.registr
             };
         case LOG_OUT:
             return {
@@ -37,6 +39,14 @@ const loginStore = (state = initialState, action) => {
             return {
                 ...state, kind: action.kind
             };
+        case SHOW_LOGIN_ALERT: 
+            return {
+                ...state, isLogin: true
+            };
+        case RESET_LOGIN_ALERT:
+            return {
+                ...state, isLogin: false
+            };
         default:
             return state;
     }
@@ -48,7 +58,11 @@ const setUserLogin = registr => ({type: SET_USER, registr});
 
 const logOut = () => ({type: LOG_OUT});
 
-const catchError = error => ({type: CATCH_ERROR, error});
+//const catchError = error => ({type: CATCH_ERROR, error});
+
+const showLoginAlert = () => ({type: SHOW_LOGIN_ALERT});
+
+const resetLogin = () => ({type: RESET_LOGIN_ALERT});
 
 const showRegisterAlert = kind => ({type: SHOW_REGISTER_ALERT, kind});
 
@@ -60,8 +74,10 @@ export const setLoginData = data => async dispatch => {
 
         if(resData.localId === "nPwPEcPAArNtsE46rqwkL567B1g1") {
             dispatch(setAdminLogin());
+            dispatch(showLoginAlert());
         } else {
             dispatch(setUserLogin(resData.registered));
+            dispatch(showLoginAlert());
         }
         
         //to LocalStorage
@@ -94,5 +110,9 @@ export const setRegisterData = data => async dispatch => {
 export const logoutAction = () => dispatch => {
     dispatch(logOut());
 };
+
+export const resetLoginAlert = () => dispatch => {
+    dispatch(resetLogin());
+}
 
 export default loginStore;
