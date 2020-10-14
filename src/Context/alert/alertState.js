@@ -9,10 +9,10 @@ export const AlertState = ({children}) => {
 
     const hide = () => dispatch({type: HIDE_ALERT});
 
-    const show = (text) => {
+    const show = (text, severity = "info") => {
         dispatch({
             type: SHOW_ALERT,
-            payload: text,
+            payload: {text, severity}
         });
     };
 

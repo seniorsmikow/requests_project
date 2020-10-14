@@ -12,7 +12,7 @@ import { withRouter } from 'react-router-dom';
 
 const Header = props => {
 
-    const [toggle, setToggle] = useState(false);
+    const [toggle, setToggle] = useState(true);
 
     const history = useHistory();
 
@@ -22,7 +22,7 @@ const Header = props => {
     };
 
     const onClose = () => {
-        setToggle(true);
+        setToggle(!toggle);
     };
 
     return (
@@ -30,7 +30,7 @@ const Header = props => {
             <nav className={classes.header}>
                 <div className={classes.header__menu}>
                     <div className={classes.mobileMenu}>
-                        <Drawer isClose={toggle} menuToggleClose={onClose}/>
+                        <Drawer isClose={toggle} menuToggleClose={onClose} isAdmin={props.isAdmin} isUser={props.isUser} isLogin={props.isLogin}/>
                         <MenuToggle onToggle={() => setToggle(!toggle)} isOpen={!toggle} menuToggleClose={onClose} />
                     </div>
 
@@ -40,9 +40,7 @@ const Header = props => {
                         <li className={classes.header__li}>
                             <NavLink to='/'>Главная</NavLink>
                         </li>
-                        <li>
-                            <NavLink to='/loginpage'>Вход</NavLink>
-                        </li>
+                        { props.isLogin ? null : <li><NavLink to='/loginpage'>Вход</NavLink></li> }
                         { props.isUser ? <li><NavLink to='/sendrequestpage'>Отправить заявку</NavLink></li> : null }
                         { props.isAdmin ? <li><NavLink to='/request'>Заявки</NavLink></li> : null }
                     </ul>

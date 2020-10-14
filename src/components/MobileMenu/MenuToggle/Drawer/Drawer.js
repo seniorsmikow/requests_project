@@ -4,14 +4,25 @@ import classes from './Drawer.module.scss';
 import Backdrop from '../../Backdrop/Backdrop';
 
 
-const list = [
+let list = [
     {to: '/', label: 'Главная', exact: true},
     {to: '/loginpage', label: 'Авторизация', exact: true},
-    {to: '/request', label: 'Заявки', exact: true},
-    {to: '/sendrequestpage', label: 'Отправить заявку', exact: true},
 ];
 
 const Drawer = props => {
+
+    if(props.isUser && props.isLogin === true) {
+        list = [
+            {to: '/', label: 'Главная', exact: true},
+            {to: '/sendrequestpage', label: 'Отправить заявку', exact: true}
+        ];
+    } else if(props.isAdmin && props.isLogin === true) {
+        list = [
+            {to: '/', label: 'Главная', exact: true},
+            {to: '/request', label: 'Заявки', exact: true}
+        ];
+    }
+
 
     const cls = [classes.drawer];
 

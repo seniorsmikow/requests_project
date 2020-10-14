@@ -1,6 +1,13 @@
-.newAlert {
-    width: 200px;
-    height: 40px;
-    background-color: red;
-    color: white;
+.other {
+    position:fixed;
+    display:flex;
+    padding-top: 150px;
+    align-items: flex-start;
+    justify-content:center;
+    top:0px;
+    left:0px;
+    width:100vw;
+    height:100vh;
+    background-color: rgba(0, 0, 0, .7);
+    z-index: 100;
 }

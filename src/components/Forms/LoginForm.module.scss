@@ -62,3 +62,12 @@
     text-transform: lowercase;
     font-weight: 500;
 }
+
+@media (max-width: 450px) {
+    .registerTip {
+        margin-top: 40px;
+    }
+    .registerTip a {
+        margin-top: 40px;
+    }
+}

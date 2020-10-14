@@ -11,14 +11,14 @@ import RegisterPage from './components/Register/RegisterPage';
 import NewAlert from './components/NewAlert/NewAlert';
 import { AlertState } from './Context/alert/alertState';
 
-
+        
 function App(props) {
 
   return (
     <AlertState>
       <BrowserRouter>
           <Header />
-            <NewAlert />
+          <NewAlert />
             <Switch>
               <Route exact path="/" component={Main}/>
               <Route path="/loginpage" component={LoginPage}/>
@@ -35,7 +35,7 @@ function App(props) {
   );
 }
 
-const mapStateToProps = state => ({isAdmin: state.login.isAdmin,isUser: state.login.isUser})
+const mapStateToProps = state => ({isAdmin: state.login.isAdmin, isUser: state.login.isUser})
   
 
 export default connect(mapStateToProps, null)(App);

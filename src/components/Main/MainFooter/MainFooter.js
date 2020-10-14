@@ -1,6 +1,6 @@
 import React from 'react';
 import classes from './MainFooter.module.scss';
-import LocalAirportIcon from '@material-ui/icons/LocalAirport';
+//import LocalAirportIcon from '@material-ui/icons/LocalAirport';
 
 const MainFooter = () => {
     return (

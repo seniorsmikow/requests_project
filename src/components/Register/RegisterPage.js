@@ -13,6 +13,7 @@ const RegisterPage = props => {
                 password={props.password}
                 setRegisterData={props.setRegisterData}
                 kind={props.kind}
+                isRegistered={props.isRegistered}
             />
         </React.Fragment>
     )
@@ -24,6 +25,7 @@ const mapStateToProps = state => {
         password: state.login.password,
         isAdmin: state.login.isAdmin,
         isUser: state.login.isUser,
+        isRegistered: state.login.isRegistered,
         kind: state.login.kind
     };
 };

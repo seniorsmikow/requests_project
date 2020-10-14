@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useEffect, useContext } from 'react';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import Button from '@material-ui/core/Button';
 import classes from './RegisterForm.module.scss';
-import CustomizedSnackbars from '../Alert/Alert';
-import SimpleBackdrop from '../Loader/Loader';
+import { AlertContext } from '../../Context/alert/alertContext';
+import { Redirect } from 'react-router-dom';
+
  
 const SignupSchema = Yup.object().shape({
   password: Yup.string()
@@ -19,25 +20,39 @@ const SignupSchema = Yup.object().shape({
  
 const RegisterForm = props => {
 
+  const {show} = useContext(AlertContext);
+
+  const showRegisteredAlert = () => {
+    if(props.isRegistered) {
+      show({text: "Вы зарегистрированы!", severity: "success"});
+    }
+  };
+
+  useEffect(() => {
+    return showRegisteredAlert();
+  });
+
+  if(props.isRegistered === true) return <Redirect to="/loginpage"/>
+
   return ( <form>
     <div className={classes.main}> 
       <div className="row justify-content-center">
         <h3>Регистрация</h3>
-        <CustomizedSnackbars kind={props.kind} />
-        {props.kind ? null : <SimpleBackdrop /> }
+        
         <Formik
           initialValues={{
             email: '',
             password: '',
           }}
           validationSchema={SignupSchema}
-          onSubmit={values => {
+          onSubmit={(values, {resetForm}) => {
             const data = {
                 email: values.email,
                 password: values.password,
                 returnSecureToken: true
             }
             props.setRegisterData(data);
+            resetForm({values: ""});
           }}
         >
           {({ errors, touched }) => (

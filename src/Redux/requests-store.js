@@ -1,14 +1,20 @@
 import { requestsAPI } from '../axios/axios';
 
-const GET_REQUESTS_DATA = "situation/GET_REQUESTS_DATA";
-const GET_NEW_REQUESTS = "situation/GET_NEW_REQUESTS";
-const RESET_FILTER = "situation/RESET_FILTER";
-const IS_ERROR = "situation/IS_ERROR";
+const GET_REQUESTS_DATA = "requests/GET_REQUESTS_DATA";
+const GET_NEW_REQUESTS = "requests/GET_NEW_REQUESTS";
+const RESET_FILTER = "requests/RESET_FILTER";
+const IS_ERROR = "requests/IS_ERROR";
+const TOGGLE_LOADING = "requests/TOGGLE_LOADING";
+const TOGGLE_DISABLED = "requests/TOGGLE_DISABLED";
+const SEND_REQUEST = "requests/SEND_REQUEST";
 
 
 const initialState = {
     machines: [],
     error: null,
+    isLoading: false,
+    isDisabled: false,
+    isRequestSend: false,
 };
 
 const situationStore = (state = initialState, action) => {
@@ -42,6 +48,18 @@ const situationStore = (state = initialState, action) => {
             return {
                 ...state, error: action.error
             };
+        case TOGGLE_LOADING: 
+            return {
+                ...state, isLoading: action.loading
+            };
+        case TOGGLE_DISABLED:
+            return {
+                ...state, isDisabled: action.disabled
+            };
+        case SEND_REQUEST:
+            return {
+                ...state, isRequestsSend: action.request
+            };
         default:
             return state;
     }
@@ -58,18 +76,32 @@ const getDateFromAxios = payload => {
 
 const getRequests = () => ({type: GET_NEW_REQUESTS});
 
-const reset = () => ({type: RESET_FILTER});
+const isLoadingRequests = loading => ({type: TOGGLE_LOADING, loading});
+
+const isDisabledButton = disabled => ({type: TOGGLE_DISABLED, disabled});
+
+const isRequestsSend = request => ({type: SEND_REQUEST, request});
+
+
 
 export const sendUserRequest = requestData => async dispatch => {
+
+    dispatch(isDisabledButton(true));
     
     let response = await requestsAPI.postData(requestData);
 
     if(response.status === 200) {
         dispatch(isError(false));
+        dispatch(isDisabledButton(false));
+        dispatch(isRequestsSend(true));
     }
+    dispatch(isRequestsSend(false));
 };
 
 export const getRequestsData = () => async dispatch => {
+
+    dispatch(isLoadingRequests(true));
+
     let response = await requestsAPI.getData();
 
     let arr = [];
@@ -79,6 +111,7 @@ export const getRequestsData = () => async dispatch => {
     ));
     
     dispatch(getDateFromAxios(arr));
+    dispatch(isLoadingRequests(false));
 };
 
 export const getNewRequests = () => dispatch => {
@@ -87,7 +120,8 @@ export const getNewRequests = () => dispatch => {
 };
 
 export const resetRequests = () => dispatch => {
-    dispatch(reset());
+    dispatch(isRequestsSend(false));
 };
+
 
 export default situationStore;

@@ -4,9 +4,8 @@ const SET_ADMIN = "auth/SET_ADMIN";
 const SET_USER = "auth/SET_USER";
 const LOG_OUT = "auth/LOG_OUT";
 const CATCH_ERROR = "auth/CATCH_ERROR";
-const SHOW_REGISTER_ALERT = "auth/SHOW_REGISTER_ALERT";
-const SHOW_LOGIN_ALERT = "auth/SHOW_LOGIN_ALERT";
-const RESET_LOGIN_ALERT = "auth/RESET_LOGIN_ALERT";
+const IS_USER_REGISTERED = "auth/IS_USER_REGISTERED";
+
 
 const initialState = {
     isAdmin: false,
@@ -14,18 +13,17 @@ const initialState = {
     isLogin: false,
     isRegistered: false,
     errorMessage: '',
-    kind: null,
 };
 
 const loginStore = (state = initialState, action) => {
     switch (action.type) {
         case SET_ADMIN:
             return {
-                ...state, isAdmin: true, isUser: false
+                ...state, isAdmin: true, isUser: false, isLogin: true
             };
         case SET_USER: 
             return {
-                ...state, isUser: true, isAdmin: false, isRegistered: action.registr
+                ...state, isUser: true, isAdmin: false, isLogin: true
             };
         case LOG_OUT:
             return {
@@ -35,17 +33,9 @@ const loginStore = (state = initialState, action) => {
             return {
                 ...state, errorMessage: action.error
             };
-        case SHOW_REGISTER_ALERT:
+        case IS_USER_REGISTERED:
             return {
-                ...state, kind: action.kind
-            };
-        case SHOW_LOGIN_ALERT: 
-            return {
-                ...state, isLogin: true
-            };
-        case RESET_LOGIN_ALERT:
-            return {
-                ...state, isLogin: false
+                ...state, isRegistered: true
             };
         default:
             return state;
@@ -60,11 +50,7 @@ const logOut = () => ({type: LOG_OUT});
 
 //const catchError = error => ({type: CATCH_ERROR, error});
 
-const showLoginAlert = () => ({type: SHOW_LOGIN_ALERT});
-
-const resetLogin = () => ({type: RESET_LOGIN_ALERT});
-
-const showRegisterAlert = kind => ({type: SHOW_REGISTER_ALERT, kind});
+const isRegistered = () => ({type: IS_USER_REGISTERED});
 
 export const setLoginData = data => async dispatch => {
 
@@ -74,10 +60,8 @@ export const setLoginData = data => async dispatch => {
 
         if(resData.localId === "nPwPEcPAArNtsE46rqwkL567B1g1") {
             dispatch(setAdminLogin());
-            dispatch(showLoginAlert());
         } else {
             dispatch(setUserLogin(resData.registered));
-            dispatch(showLoginAlert());
         }
         
         //to LocalStorage
@@ -100,7 +84,7 @@ export const setRegisterData = data => async dispatch => {
         const resData = response.data;
         console.log(resData);
         if(response.data.kind === "identitytoolkit#SignupNewUserResponse") {
-            dispatch(showRegisterAlert(response.data.kind));
+            dispatch(isRegistered());
         }
     } catch(e) {
         console.log(e);
@@ -111,8 +95,5 @@ export const logoutAction = () => dispatch => {
     dispatch(logOut());
 };
 
-export const resetLoginAlert = () => dispatch => {
-    dispatch(resetLogin());
-}
 
 export default loginStore;

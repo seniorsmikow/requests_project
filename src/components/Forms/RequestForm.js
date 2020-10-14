@@ -1,8 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
+//import { Redirect } from 'react-router-dom';
 import classes from './RequestForm.module.scss';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import Button from '@material-ui/core/Button';
+import { AlertContext } from '../../Context/alert/alertContext';
 
 
 const SignupSchema = Yup.object().shape({
@@ -26,13 +28,21 @@ const SignupSchema = Yup.object().shape({
 
 const RequestForm = props => {
 
-useEffect(() => {
-    if(props.error === false) {
-        alert("request send");
-    }
-}, [props.error]);
+const {show} = useContext(AlertContext);
 
-return ( <div className={classes.mainWrapper}>
+const showAlert = () => {
+    if(props.isRequestsSend) {
+        show({text: "Ваш запрос отправлен", severity: "success"});
+    } 
+};
+
+
+useEffect(() => {
+    return showAlert();
+});
+
+
+return ( <div className={classes.mainWrapper__request}>
     <div className={classes.requestTitle}>Ремонт оборудования</div>
     <Formik
     initialValues={{
@@ -43,8 +53,9 @@ return ( <div className={classes.mainWrapper}>
         request: ''
     }}
     validationSchema={SignupSchema}
-    onSubmit={values => {
+    onSubmit={(values, {resetForm}) => {
         props.sendUserRequest(values);
+        resetForm({values: ""});
     }}
     >
     {({ errors, touched }) => (
@@ -86,7 +97,7 @@ return ( <div className={classes.mainWrapper}>
             
             <div className={classes.buttonGroup}>
                 <div className={classes.request__button}>
-                    <Button type="submit" variant="contained" color="primary">Отправить заявку</Button>
+                    <Button type="submit" variant="contained" color="primary" disabled={props.isDisabled}>Отправить заявку</Button>
                 </div>
                 <div className={classes.request__button}>
                     <Button type="reset" variant="contained" color="secondary">Сбросить данные</Button>

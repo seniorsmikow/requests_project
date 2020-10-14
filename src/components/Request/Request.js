@@ -11,7 +11,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import styles from './Request.module.scss';
-
+import Loader from '../Loader/Loader';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -50,7 +50,7 @@ root: {
 }))(TableRow);
   
 
-const Request = ({machines, getRequestsData, getNewRequests}) => {
+const Request = ({isLoading, machines, getRequestsData, getNewRequests }) => {
 
     const classes = useStyles();
 
@@ -61,37 +61,47 @@ const Request = ({machines, getRequestsData, getNewRequests}) => {
     const handleChange = () => {
         getNewRequests();
     };
+    
+    const wrapper = () => {
+        return (
+
+            isLoading ? 
+            <Loader /> 
+
+            : <div className={styles.mainOne}>
+                <TableContainer component={Paper} className={styles.mainRequests}>
+                    <Table className={classes.table} aria-label="customized table">
+                    <TableHead>
+                        <TableRow>
+                        <StyledTableCell>Номер станка</StyledTableCell>
+                        <StyledTableCell align="center">Имя рабочего</StyledTableCell>
+                        <StyledTableCell align="center">Описание заявки</StyledTableCell>
+                        <StyledTableCell align="center">Время</StyledTableCell>
+                        <StyledTableCell align="right">Дата</StyledTableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {machines.map(el => (
+                        <StyledTableRow key={el.machineId}>
+                            <StyledTableCell component="th" scope="row">
+                            {el.machineId}
+                            </StyledTableCell>
+                            <StyledTableCell align="center">{el.userName}</StyledTableCell>
+                            <StyledTableCell align="center">{el.request}</StyledTableCell>
+                            <StyledTableCell align="center">{el.time}</StyledTableCell>
+                            <StyledTableCell align="right">{el.date}</StyledTableCell>
+                        </StyledTableRow>
+                        ))}
+                    </TableBody>
+                    </Table>
+                </TableContainer>
+                <Button onClick={handleChange} className={classes.tableBtnTime}>Показать новые</Button>
+            </div>
+        )
+    };
 
     return (
-        <div className={styles.mainOne}>
-            <TableContainer component={Paper} className={styles.mainRequests}>
-                <Table className={classes.table} aria-label="customized table">
-                <TableHead>
-                    <TableRow>
-                    <StyledTableCell>Номер станка</StyledTableCell>
-                    <StyledTableCell align="center">Имя рабочего</StyledTableCell>
-                    <StyledTableCell align="center">Описание заявки</StyledTableCell>
-                    <StyledTableCell align="center">Время</StyledTableCell>
-                    <StyledTableCell align="right">Дата</StyledTableCell>
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                    {machines.map(el => (
-                    <StyledTableRow key={el.machineId}>
-                        <StyledTableCell component="th" scope="row">
-                        {el.machineId}
-                        </StyledTableCell>
-                        <StyledTableCell align="center">{el.userName}</StyledTableCell>
-                        <StyledTableCell align="center">{el.request}</StyledTableCell>
-                        <StyledTableCell align="center">{el.time}</StyledTableCell>
-                        <StyledTableCell align="right">{el.date}</StyledTableCell>
-                    </StyledTableRow>
-                    ))}
-                </TableBody>
-                </Table>
-                <Button onClick={handleChange} className={classes.tableBtnTime}>Показать новые</Button>
-            </TableContainer>
-        </div>
+        wrapper()
     )
     
 };
@@ -100,8 +110,8 @@ const mapStateToProps = state => {
     return {
         machines: state.requests.machines,
         keys: state.requests.keys,
+        isLoading: state.requests.isLoading,
     }
 };
 
-
-export default connect(mapStateToProps, { getRequestsData, getNewRequests, resetRequests})(Request);
+export default connect(mapStateToProps, { getRequestsData, getNewRequests, resetRequests })(Request);

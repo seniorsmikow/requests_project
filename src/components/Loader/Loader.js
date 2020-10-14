@@ -1,29 +1,35 @@
 import React from 'react';
-import Backdrop from '@material-ui/core/Backdrop';
-import CircularProgress from '@material-ui/core/CircularProgress';
 import { makeStyles } from '@material-ui/core/styles';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 const useStyles = makeStyles((theme) => ({
-  backdrop: {
-    zIndex: theme.zIndex.drawer + 1,
-    color: '#fff',
+  root: {
+    display: 'flex',
+    '& > * + *': {
+      marginLeft: theme.spacing(2),
+    },
+    flexDirection: 'column',
+    fontSize: '15px',
+    textTransform: 'uppercase',
+    backgroundColor: 'rgba(0, 0, 0, 0.1)',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: '100vh'
   },
+  loader: {
+    marginTop: '20px'
+  }
 }));
 
 export default function Loader() {
   const classes = useStyles();
-  const [open, setOpen] = React.useState(false);
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-  
 
   return (
-    <div>
-      <Backdrop className={classes.backdrop} open={open} onClick={handleClose}>
-        <CircularProgress color="inherit" />
-      </Backdrop>
+    <div className={classes.root}>
+      Загрузка данных...
+      <div className={classes.loader}>
+        <CircularProgress />
+      </div>
     </div>
   );
 }
