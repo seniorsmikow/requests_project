@@ -4,12 +4,12 @@ import './App.scss';
 import Header from './components/Header/Header';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import Main from './components/Main/Main';
-import Request from './components/Request/Request';
 import SendRequestPage from './components/SendRequestPage/SendRequestPage';
 import LoginPage from './components/Login/LoginPage';
 import RegisterPage from './components/Register/RegisterPage';
 import NewAlert from './components/NewAlert/NewAlert';
 import { AlertState } from './Context/alert/alertState';
+import StickyHeadTable from './components/Request/NewRequests';
 
         
 function App(props) {
@@ -24,7 +24,7 @@ function App(props) {
               <Route path="/loginpage" component={LoginPage}/>
               <Route path="/registerpage" component={RegisterPage}/>
               {
-                props.isAdmin ? <Route path="/request" component={Request}/> : null
+                props.isAdmin ? <Route path="/request" component={StickyHeadTable}/> : null
               }
               {
                 props.isUser ? <Route path="/sendrequestpage" component={SendRequestPage}/> : null

@@ -14,7 +14,8 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: 'rgba(0, 0, 0, 0.1)',
     justifyContent: 'center',
     alignItems: 'center',
-    height: '100vh'
+    height: '100vh',
+    marginTop: '40px'
   },
   loader: {
     marginTop: '20px'
