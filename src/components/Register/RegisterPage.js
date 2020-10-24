@@ -14,6 +14,7 @@ const RegisterPage = props => {
                 setRegisterData={props.setRegisterData}
                 kind={props.kind}
                 isRegistered={props.isRegistered}
+                showErrorAlert={props.showErrorAlert}
             />
         </React.Fragment>
     )
@@ -26,7 +27,8 @@ const mapStateToProps = state => {
         isAdmin: state.login.isAdmin,
         isUser: state.login.isUser,
         isRegistered: state.login.isRegistered,
-        kind: state.login.kind
+        kind: state.login.kind,
+        showErrorAlert: state.login.showErrorAlert
     };
 };
 

@@ -17,6 +17,7 @@ const LoginPage = props => {
                 isAdmin={props.isAdmin}
                 isUser={props.isUser}
                 isShowAlert={props.isShowAlert}
+                showErrorAlert={props.showErrorAlert}
             />
         </React.Fragment>
     )
@@ -30,7 +31,8 @@ const mapStateToProps = state => {
         isUser: state.login.isUser,
         isRegistered: state.login.isRegistered,
         isLogin: state.login.isLogin,
-        isShowAlert: state.login.isShowAlert
+        isShowAlert: state.login.isShowAlert,
+        showErrorAlert: state.login.showErrorAlert
     };
 };
 

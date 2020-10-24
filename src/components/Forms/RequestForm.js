@@ -17,8 +17,6 @@ const SignupSchema = Yup.object().shape({
         .min(2, 'Не хватает символов...')
         .max(20, 'Это точно ваша фамилия?'),
 
-    // time: Yup.date()
-    //     .required('Заполните поле'),
     request: Yup.string()
         .required('Заполните поле')
         .max(50, 'Краткость- путь к повышению производетельности!'),

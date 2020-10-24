@@ -19,13 +19,8 @@ const SignupSchema = Yup.object().shape({
     .required('Заполните поле'),
 });
 
-// SignupSchema.validate({ name: 'jimmy', age: 'hi' }).catch(function (err) {
-//   err.name; // => ['Deve ser maior que 18']
-// });
  
 const LoginForm = props => {
-
-  debugger;
 
   const {show} = useContext(AlertContext);
 
@@ -34,6 +29,8 @@ const LoginForm = props => {
       show({text: "Вы зашли в режиме администратора", severity: "info"});
     } else if(props.isUser) {
       show({text: "Вы зашли в режиме пользователя", severity: "info"});
+    } else if(props.showErrorAlert) {
+      show({text: "Неверные данные. Попробуйте снова или используйте тестовые параметры, описанные на главной странице", severity: "error"});
     }
 }; 
 

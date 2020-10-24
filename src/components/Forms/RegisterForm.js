@@ -25,6 +25,8 @@ const RegisterForm = props => {
   const showRegisteredAlert = () => {
     if(props.isRegistered) {
       show({text: "Вы зарегистрированы!", severity: "success"});
+    } else if(props.showErrorAlert) {
+      show({text: "Произошла ошибка. Попробуйте снова", severity: "error"});
     }
   };
 

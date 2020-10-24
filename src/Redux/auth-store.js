@@ -12,8 +12,8 @@ const initialState = {
     isUser: false,
     isLogin: false,
     isRegistered: false,
-    isError: false,
-    errorMessage: '',
+    showErrorAlert: false,
+    networkError: false,
 };
 
 const loginStore = (state = initialState, action) => {
@@ -32,7 +32,7 @@ const loginStore = (state = initialState, action) => {
             };
         case CATCH_ERROR:
             return {
-                ...state, isError: action.error
+                ...state, showErrorAlert: action.error
             };
         case IS_USER_REGISTERED:
             return {
@@ -45,7 +45,7 @@ const loginStore = (state = initialState, action) => {
 
 const setAdminLogin = () => ({type: SET_ADMIN});
 
-const setUserLogin = registr => ({type: SET_USER, registr});
+const setUserLogin = () => ({type: SET_USER});
 
 const logOut = () => ({type: LOG_OUT});
 
@@ -58,12 +58,9 @@ export const setLoginData = data => async dispatch => {
     try {
         const response = await authAPI.login(data);
         const resData = response.data;
-        const status = response.status;
-
-        debugger;
 
         if(resData.localId === "nPwPEcPAArNtsE46rqwkL567B1g1") {
-            dispatch(setAdminLogin());
+            dispatch(setAdminLogin(resData.registered));
         } else {
             dispatch(setUserLogin(resData.registered));
         } 
@@ -77,8 +74,9 @@ export const setLoginData = data => async dispatch => {
         localStorage.setItem('expirationDate', expirationDate);
 
     } catch(e) {
-        console.log(e);
+        dispatch(catchError(true));  
     }
+    dispatch(catchError(false));
 };
 
 export const setRegisterData = data => async dispatch => {
@@ -91,8 +89,9 @@ export const setRegisterData = data => async dispatch => {
             dispatch(isRegistered());
         }
     } catch(e) {
-        console.log(e);
+        dispatch(catchError(true));
     }
+    dispatch(catchError(false));
 };
 
 export const logoutAction = () => dispatch => {
