@@ -36,7 +36,6 @@ const columns = [
 ];
 
 function createData(machineId, userName, time, date, request) {
-  //const density = population / size;
   return { machineId, userName, time, date, request };
 }
 
@@ -110,7 +109,7 @@ function StickyHeadTable(props) {
             <TableBody>
               {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
                 return (
-                  <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
+                  <TableRow hover role="checkbox" tabIndex={-1} key={row.machineId}>
                     {columns.map((column) => {
                       const value = row[column.id];
                       return (
@@ -134,6 +133,7 @@ function StickyHeadTable(props) {
           onChangePage={handleChangePage}
           onChangeRowsPerPage={handleChangeRowsPerPage}
           className={classes.tableFooter}
+          labelRowsPerPage="Количество заявок"
         />
       </Paper>
   );

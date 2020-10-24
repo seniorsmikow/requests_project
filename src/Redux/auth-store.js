@@ -12,6 +12,7 @@ const initialState = {
     isUser: false,
     isLogin: false,
     isRegistered: false,
+    isError: false,
     errorMessage: '',
 };
 
@@ -31,7 +32,7 @@ const loginStore = (state = initialState, action) => {
             };
         case CATCH_ERROR:
             return {
-                ...state, errorMessage: action.error
+                ...state, isError: action.error
             };
         case IS_USER_REGISTERED:
             return {
@@ -48,7 +49,7 @@ const setUserLogin = registr => ({type: SET_USER, registr});
 
 const logOut = () => ({type: LOG_OUT});
 
-//const catchError = error => ({type: CATCH_ERROR, error});
+const catchError = error => ({type: CATCH_ERROR, error});
 
 const isRegistered = () => ({type: IS_USER_REGISTERED});
 
@@ -57,13 +58,16 @@ export const setLoginData = data => async dispatch => {
     try {
         const response = await authAPI.login(data);
         const resData = response.data;
+        const status = response.status;
+
+        debugger;
 
         if(resData.localId === "nPwPEcPAArNtsE46rqwkL567B1g1") {
             dispatch(setAdminLogin());
         } else {
             dispatch(setUserLogin(resData.registered));
-        }
-        
+        } 
+
         //to LocalStorage
 
         const expirationDate = new Date(new Date().getTime() + resData.expiresIn * 1000);

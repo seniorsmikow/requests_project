@@ -12,13 +12,20 @@ const SignupSchema = Yup.object().shape({
     .min(2, 'Too Short!')
     .max(50, 'Too Long!')
     .required('Заполните поле'),
+
   
   email: Yup.string()
-    .email('Invalid email')
+    .email('Неверный почтовый адрес')
     .required('Заполните поле'),
 });
+
+// SignupSchema.validate({ name: 'jimmy', age: 'hi' }).catch(function (err) {
+//   err.name; // => ['Deve ser maior que 18']
+// });
  
 const LoginForm = props => {
+
+  debugger;
 
   const {show} = useContext(AlertContext);
 

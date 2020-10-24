@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import './App.scss';
 import Header from './components/Header/Header';
-import {BrowserRouter, Route, Switch} from 'react-router-dom';
+import {Redirect, Route, Switch, HashRouter} from 'react-router-dom';
 import Main from './components/Main/Main';
 import SendRequestPage from './components/SendRequestPage/SendRequestPage';
 import LoginPage from './components/Login/LoginPage';
@@ -16,7 +16,7 @@ function App(props) {
 
   return (
     <AlertState>
-      <BrowserRouter>
+      <HashRouter>
           <Header />
           <NewAlert />
             <Switch>
@@ -29,8 +29,9 @@ function App(props) {
               {
                 props.isUser ? <Route path="/sendrequestpage" component={SendRequestPage}/> : null
               }
+              <Redirect to={'/'} />
             </Switch>
-      </BrowserRouter>
+      </HashRouter>
     </AlertState>
   );
 }

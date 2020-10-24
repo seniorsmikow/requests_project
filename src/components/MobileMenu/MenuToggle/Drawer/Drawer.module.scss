@@ -1,5 +1,5 @@
 .drawer {
-    background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
+    background-color: #e47a7a;
     color: black;
     position: fixed;
     top: 0;
@@ -10,6 +10,7 @@
     z-index: 95;
     transform: translateX(0%);
     transition: transform .2s ease-in;
+    padding: 40px;
 }
 
 .drawer.close {
@@ -27,7 +28,15 @@
         margin-bottom: 20px;
         font-size: 20px;
         a {
-            color: #5d5050;
+            color: white;
+            text-transform: uppercase;
+            font-weight: 700;
         }
+    }
+    button {
+        color: white;
+        background-color: #e47a7a;
+        text-transform: uppercase;
+        font-weight: 700;
     }
 }
