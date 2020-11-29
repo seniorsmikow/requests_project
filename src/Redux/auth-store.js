@@ -1,11 +1,5 @@
 import { authAPI } from '../axios/axios';
-
-const SET_ADMIN = "auth/SET_ADMIN";
-const SET_USER = "auth/SET_USER";
-const LOG_OUT = "auth/LOG_OUT";
-const CATCH_ERROR = "auth/CATCH_ERROR";
-const IS_USER_REGISTERED = "auth/IS_USER_REGISTERED";
-const USER_LOGIN_ID = "auth/USER_LOGIN_ID";
+import { auth } from './types';
 
 
 const initialState = {
@@ -20,27 +14,27 @@ const initialState = {
 
 const loginStore = (state = initialState, action) => {
     switch (action.type) {
-        case SET_ADMIN:
+        case auth.SET_ADMIN:
             return {
                 ...state, isAdmin: true, isUser: false, isLogin: true
             };
-        case SET_USER: 
+        case auth.SET_USER: 
             return {
                 ...state, isUser: true, isAdmin: false, isLogin: true
             };
-        case USER_LOGIN_ID:
+        case auth.USER_LOGIN_ID:
             return {
                 ...state, localId: action.localId
             }
-        case LOG_OUT:
+        case auth.LOGOUT_SUCCESS:
             return {
                 ...state, isAdmin: false, isUser: false, isLogin: false, localId: null
             };
-        case CATCH_ERROR:
+        case auth.CATCH_ERROR:
             return {
                 ...state, showErrorAlert: action.error
             };
-        case IS_USER_REGISTERED:
+        case auth.IS_USER_REGISTERED:
             return {
                 ...state, isRegistered: true
             };
@@ -49,17 +43,17 @@ const loginStore = (state = initialState, action) => {
     }
 };
 
-const setAdminLogin = () => ({type: SET_ADMIN});
+const setAdminLogin = () => ({type: auth.SET_ADMIN});
 
-const setUserLogin = () => ({type: SET_USER});
+const setUserLogin = () => ({type: auth.SET_USER});
 
-const setUserLoacalId = localId => ({type: USER_LOGIN_ID, localId});
+const setUserLoacalId = localId => ({type: auth.USER_LOGIN_ID, localId});
 
-const logOut = () => ({type: LOG_OUT});
+const logOut = () => ({type: auth.LOGOUT_SUCCESS});
 
-const catchError = error => ({type: CATCH_ERROR, error});
+const catchError = error => ({type: auth.CATCH_ERROR, error});
 
-const isRegistered = () => ({type: IS_USER_REGISTERED});
+const isRegistered = () => ({type: auth.IS_USER_REGISTERED});
 
 
 export const setLoginData = data => async dispatch => {
@@ -89,10 +83,10 @@ export const setLoginData = data => async dispatch => {
     dispatch(catchError(false));
 };
 
-export const setRegisterData = data => async dispatch => {
+export const setRegisterData = payload => async dispatch => {
 
     try {
-        const response = await authAPI.register(data);
+        const response = await authAPI.register(payload);
         const resData = response.data;
         console.log(resData);
         if(response.data.kind === "identitytoolkit#SignupNewUserResponse") {
