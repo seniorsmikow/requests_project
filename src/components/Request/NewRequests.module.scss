@@ -1,4 +1,40 @@
-.mainTable {
+.table {
+    width: 100%;
     margin-top: 100px;
-    background-color: orange;
+    padding: 1%;
+    table {
+        width: 100%;
+        text-align: center;
+        border-spacing: 0;
+        td {
+            padding: 10px;
+            height: 60px;
+            padding-right: 20px;
+        }
+        th {
+            padding: 10px;
+            height: 40px;
+            background-color: #6a6c79;
+            color: white;
+            text-transform: uppercase;
+            font-weight: 600;
+            font-size: 12px;
+        }
+        
+        tr:nth-of-type(2n+1) {background-color: #eaeaea;}
+    }
+    button {
+        background-color: #4e76e8;
+        color: white;
+        font-size: 10px;
+        font-weight: 600;
+    }
+}
+
+.text {
+    margin-top: 150px;
+    text-align: center;
+    font-size: 20px;
+    text-transform: uppercase;
+
 }

@@ -14,7 +14,10 @@ export const requestsAPI = {
     },
     getDataWithKey(key) {
         return instance.get(`requests/${key}.json`);
-    }
+    },
+    deleteRequest(key) {
+        return instance.delete(`requests/${key}.json`);
+    },
 };
 
 export const authAPI = {

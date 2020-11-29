@@ -5,6 +5,7 @@ const SET_USER = "auth/SET_USER";
 const LOG_OUT = "auth/LOG_OUT";
 const CATCH_ERROR = "auth/CATCH_ERROR";
 const IS_USER_REGISTERED = "auth/IS_USER_REGISTERED";
+const USER_LOGIN_ID = "auth/USER_LOGIN_ID";
 
 
 const initialState = {
@@ -14,6 +15,7 @@ const initialState = {
     isRegistered: false,
     showErrorAlert: false,
     networkError: false,
+    localId: null
 };
 
 const loginStore = (state = initialState, action) => {
@@ -26,9 +28,13 @@ const loginStore = (state = initialState, action) => {
             return {
                 ...state, isUser: true, isAdmin: false, isLogin: true
             };
+        case USER_LOGIN_ID:
+            return {
+                ...state, localId: action.localId
+            }
         case LOG_OUT:
             return {
-                ...state, isAdmin: false, isUser: false, isLogin: false
+                ...state, isAdmin: false, isUser: false, isLogin: false, localId: null
             };
         case CATCH_ERROR:
             return {
@@ -47,11 +53,14 @@ const setAdminLogin = () => ({type: SET_ADMIN});
 
 const setUserLogin = () => ({type: SET_USER});
 
+const setUserLoacalId = localId => ({type: USER_LOGIN_ID, localId});
+
 const logOut = () => ({type: LOG_OUT});
 
 const catchError = error => ({type: CATCH_ERROR, error});
 
 const isRegistered = () => ({type: IS_USER_REGISTERED});
+
 
 export const setLoginData = data => async dispatch => {
 
@@ -63,6 +72,7 @@ export const setLoginData = data => async dispatch => {
             dispatch(setAdminLogin(resData.registered));
         } else {
             dispatch(setUserLogin(resData.registered));
+            dispatch(setUserLoacalId(resData.localId));
         } 
 
         //to LocalStorage

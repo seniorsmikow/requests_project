@@ -38,11 +38,12 @@ const Header = props => {
                     
                     <ul className={classes.header__ul}>
                         <li className={classes.header__li}>
-                            <NavLink to='/'>Главная</NavLink>
+                            <NavLink exact to='/' activeStyle={{color:'#f50057'}}>Главная</NavLink>
+                            <NavLink to='/aboutSystemPage'activeStyle={{color:'#f50057'}}>Документация</NavLink>
                         </li>
-                        { props.isLogin ? null : <li><NavLink to='/loginpage'>Вход</NavLink></li> }
-                        { props.isUser ? <li><NavLink to='/sendrequestpage'>Отправить заявку</NavLink></li> : null }
-                        { props.isAdmin ? <li><NavLink to='/request'>Заявки</NavLink></li> : null }
+                        { props.isLogin ? null : <li><NavLink to='/loginpage' activeStyle={{color:'#f50057'}}>Вход</NavLink></li> }
+                        { props.isUser ? <li><NavLink to='/sendrequestpage' activeStyle={{color:'#f50057'}}>Отправить заявку</NavLink></li> : null }
+                        { props.isAdmin ? <li><NavLink to='/request' activeStyle={{color:'#f50057'}}>Заявки</NavLink></li> : null }
                     </ul>
                 </div>
                 

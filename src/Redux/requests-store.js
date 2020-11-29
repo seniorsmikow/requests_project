@@ -7,6 +7,8 @@ const IS_ERROR = "requests/IS_ERROR";
 const TOGGLE_LOADING = "requests/TOGGLE_LOADING";
 const TOGGLE_DISABLED = "requests/TOGGLE_DISABLED";
 const SEND_REQUEST = "requests/SEND_REQUEST";
+const DELETE_REQUEST = "requests/DELETE_REQUESTS";
+const CHECK_REQUEST_DELETE = "requests/CHECK_REQUEST_DELETE";
 
 
 const initialState = {
@@ -48,6 +50,10 @@ const situationStore = (state = initialState, action) => {
             return {
                 ...state, error: action.error
             };
+        case DELETE_REQUEST:
+            return {
+                ...state, machines: state.machines.filter(el => el.id !== action.id)
+            };
         case TOGGLE_LOADING: 
             return {
                 ...state, isLoading: action.loading
@@ -59,6 +65,10 @@ const situationStore = (state = initialState, action) => {
         case SEND_REQUEST:
             return {
                 ...state, isRequestsSend: action.request
+            };
+        case CHECK_REQUEST_DELETE:
+            return {
+                ...state, machines: state.machines.filter(el => el.localId === action.userLocalId)
             };
         default:
             return state;
@@ -82,6 +92,10 @@ const isDisabledButton = disabled => ({type: TOGGLE_DISABLED, disabled});
 
 const isRequestsSend = request => ({type: SEND_REQUEST, request});
 
+const delReq = id => ({type: DELETE_REQUEST, id});
+
+const isRequestDelete = userLocalId => ({type: CHECK_REQUEST_DELETE, userLocalId});
+
 
 
 export const sendUserRequest = requestData => async dispatch => {
@@ -89,7 +103,7 @@ export const sendUserRequest = requestData => async dispatch => {
     dispatch(isDisabledButton(true));
     
     let response = await requestsAPI.postData(requestData);
-
+    
     if(response.status === 200) {
         dispatch(isError(false));
         dispatch(isDisabledButton(false));
@@ -104,24 +118,37 @@ export const getRequestsData = () => async dispatch => {
 
     let response = await requestsAPI.getData();
 
-    let arr = [];
-
-    Object.keys(response.data).map(elem => (
-        arr.push(response.data[elem])
-    ));
+    const payload = Object.keys(response.data || {}).map(key => {
+        return {
+            ...response.data[key],
+            id: key
+        }
+    })
     
-    dispatch(getDateFromAxios(arr));
+    dispatch(getDateFromAxios(payload));
     dispatch(isLoadingRequests(false));
 };
 
 export const getNewRequests = () => dispatch => {
-
     dispatch(getRequests());
 };
 
 export const resetRequests = () => dispatch => {
     dispatch(isRequestsSend(false));
 };
+
+export const deleteRequests = id => async dispatch => {
+
+    let response = await requestsAPI.deleteRequest(id);
+    
+    if(response.status === 200) {
+        dispatch(delReq(id));
+    }
+}
+
+export const checkRequestDelete = userLocalId => dispatch => {
+    dispatch(isRequestDelete(userLocalId));
+}
 
 
 export default situationStore;

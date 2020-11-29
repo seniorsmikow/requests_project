@@ -8,6 +8,7 @@ import SendRequestPage from './components/SendRequestPage/SendRequestPage';
 import LoginPage from './components/Login/LoginPage';
 import RegisterPage from './components/Register/RegisterPage';
 import NewAlert from './components/NewAlert/NewAlert';
+import AboutSystemPage from './components/AboutSystemPage/AboutSystemPage';
 import { AlertState } from './Context/alert/alertState';
 import StickyHeadTable from './components/Request/NewRequests';
 
@@ -23,6 +24,7 @@ function App(props) {
               <Route exact path="/" component={Main}/>
               <Route path="/loginpage" component={LoginPage}/>
               <Route path="/registerpage" component={RegisterPage}/>
+              <Route path="/aboutSystemPage" component={AboutSystemPage}/>
               {
                 props.isAdmin ? <Route path="/request" component={StickyHeadTable}/> : null
               }
