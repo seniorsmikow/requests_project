@@ -1,14 +1,5 @@
 import { requestsAPI } from '../axios/axios';
-
-const GET_REQUESTS_DATA = "requests/GET_REQUESTS_DATA";
-const GET_NEW_REQUESTS = "requests/GET_NEW_REQUESTS";
-const RESET_FILTER = "requests/RESET_FILTER";
-const IS_ERROR = "requests/IS_ERROR";
-const TOGGLE_LOADING = "requests/TOGGLE_LOADING";
-const TOGGLE_DISABLED = "requests/TOGGLE_DISABLED";
-const SEND_REQUEST = "requests/SEND_REQUEST";
-const DELETE_REQUEST = "requests/DELETE_REQUESTS";
-const CHECK_REQUEST_DELETE = "requests/CHECK_REQUEST_DELETE";
+import { requests } from './types';
 
 
 const initialState = {
@@ -17,15 +8,16 @@ const initialState = {
     isLoading: false,
     isDisabled: false,
     isRequestSend: false,
+    isUserCreateRequest: false
 };
 
 const situationStore = (state = initialState, action) => {
     switch (action.type) {
-        case GET_REQUESTS_DATA:
+        case requests.GET_REQUESTS_DATA:
             return {
                 ...state, machines: action.payload
             };
-        case GET_NEW_REQUESTS:
+        case requests.GET_NEW_REQUESTS:
             function compare(a, b) {
                 const dateA = a.time.split(":").join('');
                 const dateB = b.time.split(":").join('');
@@ -42,31 +34,31 @@ const situationStore = (state = initialState, action) => {
             return {
                 ...state, machines: [...state.machines.sort(compare)]
             };
-        case RESET_FILTER: 
+        case requests.RESET_FILTER: 
             return {
                 ...state, machines: state.machines.map(el => el)
             };
-        case IS_ERROR:
+        case requests.IS_ERROR:
             return {
                 ...state, error: action.error
             };
-        case DELETE_REQUEST:
+        case requests.DELETE_REQUEST:
             return {
                 ...state, machines: state.machines.filter(el => el.id !== action.id)
             };
-        case TOGGLE_LOADING: 
+        case requests.TOGGLE_LOADING: 
             return {
                 ...state, isLoading: action.loading
             };
-        case TOGGLE_DISABLED:
+        case requests.TOGGLE_DISABLED:
             return {
                 ...state, isDisabled: action.disabled
             };
-        case SEND_REQUEST:
+        case requests.SEND_REQUEST:
             return {
-                ...state, isRequestsSend: action.request
+                ...state, isRequestsSend: action.request, isUserCreateRequest: true
             };
-        case CHECK_REQUEST_DELETE:
+        case requests.CHECK_REQUEST_DELETE:
             return {
                 ...state, machines: state.machines.filter(el => el.localId === action.userLocalId)
             };
@@ -75,26 +67,26 @@ const situationStore = (state = initialState, action) => {
     }
 };
 
-const isError = error => ({type: IS_ERROR, error});
+const isError = error => ({type: requests.IS_ERROR, error});
 
 const getDateFromAxios = payload => {
     return {
-        type: GET_REQUESTS_DATA,
-        payload
+        type: requests.GET_REQUESTS_DATA,
+        payload,
     };
 };
 
-const getRequests = () => ({type: GET_NEW_REQUESTS});
+const getRequests = () => ({type: requests.GET_NEW_REQUESTS});
 
-const isLoadingRequests = loading => ({type: TOGGLE_LOADING, loading});
+const isLoadingRequests = loading => ({type: requests.TOGGLE_LOADING, loading});
 
-const isDisabledButton = disabled => ({type: TOGGLE_DISABLED, disabled});
+const isDisabledButton = disabled => ({type: requests.TOGGLE_DISABLED, disabled});
 
-const isRequestsSend = request => ({type: SEND_REQUEST, request});
+const isRequestsSend = request => ({type: requests.SEND_REQUEST, request});
 
-const delReq = id => ({type: DELETE_REQUEST, id});
+const delReq = id => ({type: requests.DELETE_REQUEST, id});
 
-const isRequestDelete = userLocalId => ({type: CHECK_REQUEST_DELETE, userLocalId});
+const isRequestDelete = userLocalId => ({type: requests.CHECK_REQUEST_DELETE, userLocalId});
 
 
 
@@ -124,6 +116,7 @@ export const getRequestsData = () => async dispatch => {
             id: key
         }
     })
+
     
     dispatch(getDateFromAxios(payload));
     dispatch(isLoadingRequests(false));

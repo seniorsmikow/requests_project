@@ -2,6 +2,7 @@ import React from 'react';
 import classes from './SendRequestPage.scss';
 import {connect} from 'react-redux';
 import {getRequestsData, sendUserRequest, resetRequests, checkRequestDelete} from '../../Redux/requests-store';
+//import { isUserCreate } from '../../Redux/helpers-store';  // for test
 import RequestForm from '../Forms/RequestForm';
 
 const SendRequestPage = props => {
@@ -23,6 +24,8 @@ const SendRequestPage = props => {
                 resetRequests={props.resetRequests}
                 checkRequestDelete={props.checkRequestDelete}
                 getRequestsData={props.getRequestsData} 
+                isUserCreateRequest={props.isUserCreateRequest}
+                //isUserCreate = {props.isUserCreate} //for test 
             />
         </div>
     )
@@ -39,8 +42,9 @@ const mapStateToProps = state => {
         machines: state.requests.machines,
         error: state.requests.error,
         isRequestsSend: state.requests.isRequestsSend,
-        localId: state.login.localId
+        localId: state.login.localId,
+        isUserCreateRequest: state.requests.isUserCreateRequest
     }
 };
 
-export default connect(mapStateToProps, {getRequestsData, sendUserRequest, resetRequests, checkRequestDelete})(SendRequestPage);
+export default connect(mapStateToProps, {getRequestsData, sendUserRequest, resetRequests, checkRequestDelete })(SendRequestPage);

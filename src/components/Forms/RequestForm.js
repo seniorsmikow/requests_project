@@ -19,7 +19,7 @@ const SignupSchema = Yup.object().shape({
 
     request: Yup.string()
         .required('Заполните поле')
-        .max(100, 'Краткость- путь к повышению производетельности!'),
+        .max(150, 'Краткость- путь к повышению производетельности!'),
 });
 
 
@@ -35,7 +35,6 @@ const RequestForm = props => {
     };
 
     const getRequests = props.getRequestsData;
-    const checkReq = props.checkRequestDelete;
 
     useEffect(() => {
         getRequests();
@@ -47,28 +46,11 @@ const RequestForm = props => {
 
     const userLocalId = props.localId;
 
-    // useEffect(() => {
-    //     let answer = checkReq(userLocalId);
-    //     console.log(answer);
-    // }, [checkReq, userLocalId]);
-
-    const checkReqDel = () => {
-        if(userLocalId) {
-            // checkReq(userLocalId);
-            // console.log(props);
-
-            let a = props.machines.filter(el => el.localId === userLocalId);
-            if(!a.length) {
-                show({text: "Ваш запрос выполнен", severity: "success"});
-            } else {
-                show({text: "Ваш запрос не выполнен", severity: "info"});
-            }
-
-        }
+    const check = () => {
+        let a = props.checkRequestDelete(userLocalId);
+        console.log(a);
     };
 
-    
- 
     if(userLocalId) {
         return ( 
         
@@ -81,11 +63,13 @@ const RequestForm = props => {
                     date: '',
                     time: '',
                     request: '',
-                    localId: `${userLocalId}`
+                    localId: `${userLocalId}`,
+                    isRequestsSend: true
                 }}
                 validationSchema={SignupSchema}
                 onSubmit={(values, {resetForm}) => {
                     props.sendUserRequest(values);
+                    //props.isUserCreate(); // тестовая функция. Добавление флага отправки запроса true/false.
                     resetForm({values: ""});
                 }}
                 >
@@ -133,13 +117,14 @@ const RequestForm = props => {
                             <div className={classes.request__button}>
                                 <Button type="reset" variant="contained" color="secondary">Сбросить данные</Button>
                             </div>
+                            <div className={classes.request__button}>
+                                <Button onClick={check} type="reset" variant="contained" color="secondary">check</Button>
+                            </div>
                         </div>
                         
                     </Form>
-                    
                 )}
                 </Formik>
-                <Button onClick={checkReqDel} variant="contained" color="secondary">CHECK</Button>
             </div> ) 
     } return <div>After</div>
 };

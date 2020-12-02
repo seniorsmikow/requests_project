@@ -9,8 +9,8 @@ export const requestsAPI = {
     getData() {
         return instance.get(`requests.json`);
     },
-    postData(payload) {
-        return instance.post(`requests.json`, payload);
+    postData(data) {
+        return instance.post(`requests.json`, data);
     },
     getDataWithKey(key) {
         return instance.get(`requests/${key}.json`);
@@ -26,5 +26,11 @@ export const authAPI = {
     },
     register(data) {
         return axios.post(`https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyCkOTe-LJOL6MgVI7nDy2TUJapgsgyzFQc`, data);
+    }
+};
+
+export const usersAPI = {
+    postUserPayload(data) {
+        return instance.post(`helpers.json`, data);
     }
 };

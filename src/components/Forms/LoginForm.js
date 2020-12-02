@@ -84,7 +84,7 @@ const LoginForm = props => {
                               </div>
                               <div className={classes.registerTip}>
                                   отсутствует аккаунт?
-                                  <NavLink style={{color: '#a5e22f', textDecoration: 'none'}} to="/registerpage">регистрация</NavLink>
+                                  <NavLink style={{color: '#d23a3a', textDecoration: 'none'}} to="/registerpage">регистрация</NavLink>
                               </div>
                             </Form>
                         </div>
