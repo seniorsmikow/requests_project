@@ -1,5 +1,4 @@
 import React, { useEffect, useContext } from 'react';
-//import { Redirect } from 'react-router-dom';
 import classes from './RequestForm.module.scss';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
@@ -46,9 +45,15 @@ const RequestForm = props => {
 
     const userLocalId = props.localId;
 
-    const check = () => {
-        let a = props.checkRequestDelete(userLocalId);
-        console.log(a);
+    const checkRequestDelete = () => {
+
+        let arr = props.machines.filter(el => el.localId === userLocalId);
+
+        if(arr.length) {
+            show({text: "Ваш запрос не выполнен", severity: "info"});
+        } else {
+            show({text: "Ваш запрос выполнен", severity: "success"});
+        }
     };
 
     if(userLocalId) {
@@ -118,7 +123,7 @@ const RequestForm = props => {
                                 <Button type="reset" variant="contained" color="secondary">Сбросить данные</Button>
                             </div>
                             <div className={classes.request__button}>
-                                <Button onClick={check} type="reset" variant="contained" color="secondary">check</Button>
+                                <Button onClick={checkRequestDelete} variant="contained">проверить запрос</Button>
                             </div>
                         </div>
                         
