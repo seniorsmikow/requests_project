@@ -1,3 +1,9 @@
+.main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .descriptionBlock {
     margin: 0 auto;
     margin-top: 150px;
@@ -5,11 +11,16 @@
     word-spacing: 0.3em;
     line-height: 150%;
     display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
     width: 50%;
     text-align: justify;
     font-weight: 400;
     height: 100%;
+    li {
+        color: red;
+    }
 }
 
 .descriptionBlock p {
@@ -18,6 +29,14 @@
 
 .descriptionBlock span {
     font-weight: 700;
+}
+
+.main__img {
+    width: 400px;
+    margin-top: 40px;
+    img {
+        width: 100%;
+    }
 }
 
 @media (max-width: 1300px) {

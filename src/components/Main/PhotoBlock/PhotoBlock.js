@@ -5,6 +5,7 @@ import FlashOnIcon from '@material-ui/icons/FlashOn';
 import HourglassEmptyIcon from '@material-ui/icons/HourglassEmpty';
 import ReportProblemIcon from '@material-ui/icons/ReportProblem';
 import SettingsIcon from '@material-ui/icons/Settings';
+import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 
 
 const PhotoBlock = () => {
@@ -33,6 +34,7 @@ const PhotoBlock = () => {
                         <SettingsIcon fontSize="large"/>
                     </div>
                 </div>
+                <KeyboardArrowDownIcon />
             </div>
             
         </div>

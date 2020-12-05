@@ -45,7 +45,7 @@ const LoginForm = props => {
 
 
     return ( 
-            <form>
+            <div>
               <div className={classes.main}> 
                 <div>
                   <h2>Login</h2>
@@ -62,7 +62,7 @@ const LoginForm = props => {
                   >
                     {({ errors, touched }) => (
                       
-                      <form>
+                      <div>
                         <div>
                             <Form>
                               <div className={classes.formGroup}>
@@ -88,14 +88,14 @@ const LoginForm = props => {
                               </div>
                             </Form>
                         </div>
-                      </form>
+                      </div>
                     
                       
                     )}
                   </Formik>
                 </div>
               </div>
-            </form> )
+            </div> )
 }
 
 export default LoginForm;

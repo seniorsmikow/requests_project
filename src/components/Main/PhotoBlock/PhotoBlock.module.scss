@@ -45,6 +45,15 @@ $darkColor: #060606;
     color: #080808;
 }
 
+.downIcon {
+    margin-top: 300px;
+    background-color: red;
+    z-index: 110;
+    position: fixed;
+    top: 200;
+    left: 200;
+}
+
 @media (max-width: 1600px) {
     .photoBlock {
         height: 900px;

@@ -86,9 +86,6 @@ const isRequestsSend = request => ({type: requests.SEND_REQUEST, request});
 
 const delReq = id => ({type: requests.DELETE_REQUEST, id});
 
-const isRequestDelete = userLocalId => ({type: requests.CHECK_REQUEST_DELETE, userLocalId});
-
-
 
 export const sendUserRequest = requestData => async dispatch => {
 
@@ -138,10 +135,5 @@ export const deleteRequests = id => async dispatch => {
         dispatch(delReq(id));
     }
 }
-
-export const checkRequestDelete = userLocalId => dispatch => {
-    dispatch(isRequestDelete(userLocalId));
-}
-
 
 export default situationStore;

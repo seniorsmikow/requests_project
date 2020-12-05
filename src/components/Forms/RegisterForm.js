@@ -36,7 +36,7 @@ const RegisterForm = props => {
 
   if(props.isRegistered === true) return <Redirect to="/loginpage"/>
 
-  return ( <form>
+  return ( <div>
     <div className={classes.main}> 
       <div className="row justify-content-center">
         <h3>Регистрация</h3>
@@ -58,14 +58,14 @@ const RegisterForm = props => {
           }}
         >
           {({ errors, touched }) => (
-            <div class="container">
-              <div class="row justify-content-center">
-                <form>
+            <div className="container">
+              <div className="row justify-content-center">
+                <div>
                   <div className="form-row">
                       <Form>
                         <div className={classes.formGroup}>
                           <label htmlFor="inputEmail4">Email</label>
-                          <Field name="email" class="form-control" id="inputEmail4"/>
+                          <Field name="email" className="form-control" id="inputEmail4"/>
                           {errors.email && touched.email ? (
                             <div className={classes.formRequestError}>{errors.email}</div>
                           ) : null}
@@ -73,7 +73,7 @@ const RegisterForm = props => {
                         
                         <div className={classes.formGroup}>
                           <label htmlFor="inputPassword4">Password</label>
-                          <Field name="password" type="password" className="form-control" id="inputPassword4"/>
+                          <Field name="password" type="password" autoComplete="on" className="form-control" id="inputPassword4"/>
                           {errors.password && touched.password ? <div className={classes.formRequestError}>{errors.password}</div> : null}
                         </div>
                         <div className={classes.buttonGroup}>
@@ -83,7 +83,7 @@ const RegisterForm = props => {
                         </div>
                       </Form>
                   </div>
-                </form>
+                </div>
               </div>
             </div>
             
@@ -91,7 +91,7 @@ const RegisterForm = props => {
         </Formik>
       </div>
     </div>
-  </form> )
+  </div> )
 };
 
 export default RegisterForm;
