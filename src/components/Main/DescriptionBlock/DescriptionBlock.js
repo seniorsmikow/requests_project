@@ -1,9 +1,16 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import classes from './DescriptionBlock.module.scss';
+import ScrollToBottom from '../../ScrollToBottom/ScrollToBottom';
 
 const DescriptionBlock = () => {
+
+    const mainDescriptionBlock = useRef(null);
+
     return (
-        <div className={classes.main}>
+        <div className={classes.main} ref={mainDescriptionBlock}>
+            
+            <ScrollToBottom mainDescriptionBlock={mainDescriptionBlock}/>
+
             <div className={classes.descriptionBlock}>
                 5S – сокращение от “5 Steps” (пять шагов) представляет собой инструмент для обеспечения системы бережливого производства, 
                 рационализации рабочего места с помощью маркировки. Это не “стандартизация уборки”, 
