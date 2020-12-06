@@ -1,11 +1,10 @@
 import React from 'react';
 import classes from './PhotoBlock.module.scss';
 import BuildIcon from '@material-ui/icons/Build';
-import FlashOnIcon from '@material-ui/icons/FlashOn';
-import HourglassEmptyIcon from '@material-ui/icons/HourglassEmpty';
-import ReportProblemIcon from '@material-ui/icons/ReportProblem';
 import SettingsIcon from '@material-ui/icons/Settings';
-
+import TimerIcon from '@material-ui/icons/Timer';
+import AllInclusiveIcon from '@material-ui/icons/AllInclusive';
+import DeleteSweepIcon from '@material-ui/icons/DeleteSweep';
 
 const PhotoBlock = () => {
 
@@ -17,19 +16,19 @@ const PhotoBlock = () => {
                     технического состояния оборудования
                 </div>
                 <div className={classes.photoBlock_icons__wrapper}>
-                    <div className={classes.photoBlock_icons__item}>
+                    <div className={classes.photoBlock_icons__item__one}>
                         <BuildIcon fontSize="large" />
                     </div>
-                    <div className={classes.photoBlock_icons__item}>
-                        <FlashOnIcon fontSize="large"/>
+                    <div className={classes.photoBlock_icons__item__two}>
+                        <TimerIcon fontSize="large"/>
                     </div>
-                    <div className={classes.photoBlock_icons__item}> 
-                        <HourglassEmptyIcon fontSize="large"/>
+                    <div className={classes.photoBlock_icons__item__three}> 
+                        <AllInclusiveIcon fontSize="large"/>
                     </div>
-                    <div className={classes.photoBlock_icons__item}>
-                        <ReportProblemIcon fontSize="large"/>
+                    <div className={classes.photoBlock_icons__item__four}>
+                        <DeleteSweepIcon fontSize="large"/>
                     </div>
-                    <div className={classes.photoBlock_icons__item}>
+                    <div className={classes.photoBlock_icons__item__five}>
                         <SettingsIcon fontSize="large"/>
                     </div>
                 </div>
