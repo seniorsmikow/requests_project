@@ -17,7 +17,7 @@ const PhotoBlock = () => {
                 </div>
                 <div className={classes.photoBlock_icons__wrapper}>
                     <div className={classes.photoBlock_icons__item__one}>
-                        <BuildIcon fontSize="large" />
+                        <i><BuildIcon fontSize="large" /></i>
                     </div>
                     <div className={classes.photoBlock_icons__item__two}>
                         <TimerIcon fontSize="large"/>

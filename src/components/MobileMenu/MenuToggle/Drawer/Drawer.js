@@ -33,6 +33,7 @@ const Drawer = props => {
     } else if (props.isLogin === false) {
         list = [
             {to: '/', label: 'Главная', exact: true},
+            {to: '/aboutSystemPage', label: 'Документация', exact: true},
             {to: '/loginpage', label: 'Авторизация', exact: true},
         ];
     }

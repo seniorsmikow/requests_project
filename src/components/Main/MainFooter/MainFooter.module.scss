@@ -1,103 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Poiret+One&display=swap');
+
 .mainFooter {
-    height: 500px;
+    height: 80px;
     margin: 0 auto;
-    margin-top: 100px;
-    background: url('https://avatars.mds.yandex.net/get-zen_doc/241223/pub_5daf0f69c49f2900b0a1208a_5daf114de4fff000ad0f2916/scale_1200') bottom center / 100% no-repeat fixed black;
-    padding-top: 100px;
-    box-sizing: border-box;
-}
-
-.mainFooter__title {
+    background-image: linear-gradient(to right, #434343 0%, black 100%);
     color: white;
-    font-size: 40px;
-    font-weight: bold;
-}
-
-.mainFooter__airplan {
-    margin-left: 40px;
-    margin-top: 10px;
-    width: 30%;
-    height: 30%;
-    color: white;
-}
-
-.mainFooter__wrapper {
-    margin-top: 260px;
+    font-size: 15px;
+    text-transform: uppercase;
+    font-family: 'Poiret One', cursive;
     display: flex;
     justify-content: center;
-}
-
-.mainFooter__airplan_wrapper {
-    margin-left: 30px;
-    display: flex;
     align-items: center;
-}
-
-.mainFooter__airplan_one {
-    color: red;
-    transform: rotate(90deg);
-    animation: airplan 2000ms ease-in;
-}
-.mainFooter__airplan_two {
-    color: blue;
-    transform: rotate(90deg);
-    animation: airplan 3000ms ease-in;
-}
-.mainFooter__airplan_three {
-    color: blue;
-    transform: rotate(90deg);
-    animation: airplan 4000ms ease-in;
-}
-.mainFooter__airplan_four {
-    color: white;
-    transform: rotate(90deg);
-    animation: airplan 3000ms ease-in;
-}
-.mainFooter__airplan_five {
-    color: white;
-    transform: rotate(90deg);
-    animation: airplan 2000ms ease-in;
-}
-
-@keyframes airplan {
-    0% {
-        transform: rotate(90deg) translateX(0px) ;
-    }
-        100% {
-        transform: rotate(-20deg) translateX(400px);
-        opacity: 0.2;
-    }
-}
-
-@media (max-width: 1300px) {
-    .mainFooter {
-        height: 350px;
-    }
-}
-
-@media (max-width: 570px) {
-    .mainFooter {
-        height: 300px;
-    }
-}
-
-@media (max-width: 500px) {
-    .mainFooter {
-        height: 250px;
-        padding-top: 10px;
-    }
-}
-
-@media (max-width: 420px) {
-    .mainFooter {
-        height: 200px;
-        padding-top: 0px;
-    }
-}
-
-@media (max-width: 340px) {
-    .mainFooter {
-        height: 170px;
-        padding-top: 0px;
-    }
+    box-sizing: border-box;
 }

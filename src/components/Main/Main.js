@@ -4,7 +4,6 @@ import PhotoBlock from './PhotoBlock/PhotoBlock';
 import DescriptionBlock from './DescriptionBlock/DescriptionBlock';
 import MainFooter from './MainFooter/MainFooter';
 import ScrollToTop from './../ScrollToTop/ScrollToTop';
-//import Tip from './../Tip/Tip';
 
 
 const Main = () => {

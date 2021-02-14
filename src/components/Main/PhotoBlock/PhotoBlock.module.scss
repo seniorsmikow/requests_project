@@ -10,7 +10,6 @@ $darkColor: #060606;
     display: flex;
     flex-direction: column;
     align-items: center;
-    //justify-content: center;
     padding-top: 250px;
     -webkit-box-shadow: 2px 9px 14px 0px rgba(50, 50, 50, 0.86);
     -moz-box-shadow:    2px 9px 14px 0px rgba(50, 50, 50, 0.86);
@@ -251,7 +250,6 @@ $darkColor: #060606;
         background: $imgURL top center / 110% no-repeat fixed $darkColor;
     }
     .photoBlock_title {
-        //margin-top: -20px;
         padding-top: 40px;
         width: 60%;
         height: 60%;
@@ -287,7 +285,6 @@ $darkColor: #060606;
         width: 90%;
         margin: 0 auto;
         margin-top: 20px;
-        //font-size: 20px;
     }
     .photoBlock_icons__wrapper {
         margin-top: 120px;
@@ -316,7 +313,15 @@ $darkColor: #060606;
     }
     .photoBlock_icons__wrapper {
         margin-top: 110px;
-        width: 75%;
+    }
+    .photoBlock_icons__item__one:hover::before, 
+    .photoBlock_icons__item__two:hover::before, 
+    .photoBlock_icons__item__three:hover::before, 
+    .photoBlock_icons__item__four:hover::before, 
+    .photoBlock_icons__item__five:hover::before {
+        width: 150px;
+        height: 20px;
+        font-size: 10px;
     }
 }
 
@@ -344,6 +349,15 @@ $darkColor: #060606;
         margin-top: 80px;
         width: 75%;
     }
+    .photoBlock_icons__item__one:hover::before, 
+    .photoBlock_icons__item__two:hover::before, 
+    .photoBlock_icons__item__three:hover::before, 
+    .photoBlock_icons__item__four:hover::before, 
+    .photoBlock_icons__item__five:hover::before {
+        width: 100px;
+        height: 40px;
+        font-size: 8px;
+    }
 }
 
 @media (max-width: 600px) {
@@ -369,6 +383,15 @@ $darkColor: #060606;
         width: 80%;
         margin-top: 70px;
     }
+    .photoBlock_icons__item__one:hover::before, 
+    .photoBlock_icons__item__two:hover::before, 
+    .photoBlock_icons__item__three:hover::before, 
+    .photoBlock_icons__item__four:hover::before, 
+    .photoBlock_icons__item__five:hover::before {
+        width: 100px;
+        height: 40px;
+        font-size: 8px;
+    }
 }
 
 @media (max-width: 450px) {
@@ -391,9 +414,13 @@ $darkColor: #060606;
         margin-top: 20px;
     }
     .photoBlock_icons__wrapper {
-        margin-top: 50px;
-        width: 80%;
-        font-size: 10px;
+        display: none;
+    }
+}
+
+@media (max-width: 400px) {
+    .photoBlock_icons__wrapper {
+       display: none;
     }
 }
 
@@ -412,8 +439,5 @@ $darkColor: #060606;
     }
     .photoBlock_subTitle {
         font-size: 12px;
-    }
-    .photoBlock_icons__wrapper {
-        width: 80%;
     }
 }

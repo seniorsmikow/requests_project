@@ -1,7 +1,6 @@
 {
   "name": "machine_project",
   "version": "0.1.0",
-  "homepage": "http://reacttestproject.ru",
   "private": true,
   "dependencies": {
     "@date-io/date-fns": "1.x",

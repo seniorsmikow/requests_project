@@ -1,15 +1,39 @@
 .aboutPage__main {
-    height: 100vh;
-}
-
-.aboutPage__description {
-    width: 100%;
-    height: 500px;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    &_round {
-        width: 300px;
-        height: 300px;
+    padding-top: 200px;
+    padding-bottom: 50px;
+    color: #141f48;
+    p {
+        width: 80%;
+        margin-bottom: 20px;
+        font-size: 20px;
+        font-weight: 400;
+        line-height: 1.5em;
+        text-indent: 30px;
+        li {
+            font-size: 20px;
+            font-weight: 300;
+            margin-bottom: 20px;
+            list-style-type: square;
+            margin-left: 50px;
+            &:nth-child(1) {
+                margin-top: 20px;
+            }
+        }
+        span {
+            color: red;
+        }
     }
 }
+
+@media (max-width: 600px) {
+    .aboutPage__main {
+        padding-top: 120px;
+        p {
+            width: 95%;
+        }
+    }
+}
+
